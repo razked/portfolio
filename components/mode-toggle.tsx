@@ -6,10 +6,19 @@ import { useTheme } from "next-themes";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function ModeToggle() {
+  const [mounted, setMounted] = React.useState(false);
   const { theme, setTheme } = useTheme();
 
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className="h-9 w-[120px]" />;
+  }
+
   return (
-    <Tabs value={theme} onValueChange={setTheme}>
+    <Tabs value={theme || "system"} onValueChange={setTheme}>
       <TabsList className="h-9">
         <TabsTrigger value="light" className="px-2.5" title="Light mode">
           <Sun className="h-4 w-4" />
