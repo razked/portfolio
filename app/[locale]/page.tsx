@@ -44,16 +44,9 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background to-muted/20">
+      <section className="relative overflow-hidden bg-background section-border-bottom">
         <div className="container mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="mb-8 inline-flex items-center rounded-full border border-border/40 bg-muted/50 px-3 py-1 text-sm">
-              <span className="mr-2">✨</span>
-              <span className="text-muted-foreground">
-                {t("hero.greeting")}
-              </span>
-            </div>
-
             <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
               <span className="block">{t("hero.name")}</span>
               <span className="block bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -88,7 +81,7 @@ export default function Home() {
       </section>
 
       {/* How I Work & Think Section */}
-      <section className="border-b border-border/40 py-24 sm:py-32">
+      <section className="relative py-24 sm:py-32 bg-background section-border-bottom">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center mb-12">
             <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
@@ -99,14 +92,17 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mx-auto max-w-5xl">
+          <div className="mx-auto max-w-5xl card-gradient rounded-lg overflow-hidden">
             <WorkflowDiagram />
           </div>
         </div>
       </section>
 
       {/* Featured Projects Section */}
-      <section id="projects" className="py-24 sm:py-32">
+      <section
+        id="projects"
+        className="relative py-24 sm:py-32 bg-background section-border-bottom"
+      >
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
@@ -121,7 +117,7 @@ export default function Home() {
             {featuredProjects.map((project, index) => (
               <Card
                 key={index}
-                className="group overflow-hidden border-border/40 transition-all hover:shadow-xl hover:-translate-y-2"
+                className="group overflow-hidden card-gradient transition-all hover:shadow-xl hover:-translate-y-2"
               >
                 <CardHeader>
                   <div className="mb-4 text-6xl">{project.image}</div>
@@ -159,7 +155,7 @@ export default function Home() {
       {/* Contact Form Section */}
       <section
         id="contact"
-        className="border-t border-border/40 bg-muted/20 py-24"
+        className="relative bg-background py-24 section-border-bottom"
       >
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl">
@@ -171,7 +167,7 @@ export default function Home() {
                 {tContact("subtitle")}
               </p>
             </div>
-            <Card className="border-border/40">
+            <Card className="card-gradient">
               <CardContent className="pt-6">
                 <ContactForm />
               </CardContent>

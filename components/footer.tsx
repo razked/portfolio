@@ -19,7 +19,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-border/40 bg-background">
+    <footer className="bg-background">
       <div className="container mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* Brand Section */}
@@ -61,9 +61,9 @@ export function Footer() {
           </div>
         </div>
 
-        <Separator className="my-8" />
+        <div className="relative my-8 w-full section-border-bottom"></div>
 
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row pt-4">
           <p className="text-sm text-muted-foreground">
             © {currentYear} Raz Kedem. {t("rights")}
           </p>

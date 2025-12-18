@@ -257,10 +257,10 @@ export function WorkflowDiagram() {
         preventScrolling={false}
         defaultEdgeOptions={{
           animated: true,
-          style: { strokeWidth: 3, stroke: theme === "dark" ? "#888" : "#666" },
+          style: { strokeWidth: 3, stroke: "#888" },
         }}
       >
-        <Background color={theme === "dark" ? "#333" : "#ddd"} gap={16} />
+        <Background color="#3a3b50" gap={16} />
       </ReactFlow>
     </div>
   );
