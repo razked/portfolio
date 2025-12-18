@@ -1,5 +1,101 @@
 {
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects"
+  },
   "home": {
-    "title": "Hello world!"
+    "title": "Hello world!",
+    "hero": {
+      "greeting": "Hi, I'm",
+      "name": "Raz Kedem",
+      "title": "Senior Full Stack Developer",
+      "description": "I craft elegant solutions to complex problems, focusing on scalable architecture and exceptional user experiences.",
+      "cta": "View My Work",
+      "contact": "Get In Touch"
+    },
+    "approach": {
+      "title": "How I Work & Think",
+      "subtitle": "My development philosophy combines technical excellence with user-centric design",
+      "principles": [
+        {
+          "title": "Strategic Planning",
+          "description": "I begin every project with thorough research and planning, ensuring alignment with business goals and user needs."
+        },
+        {
+          "title": "Clean Architecture",
+          "description": "I believe in writing maintainable, scalable code that follows best practices and design patterns."
+        },
+        {
+          "title": "Iterative Development",
+          "description": "Continuous improvement through testing, feedback, and refinement leads to exceptional results."
+        },
+        {
+          "title": "Performance First",
+          "description": "Optimization is not an afterthought. I build with performance and scalability in mind from day one."
+        }
+      ]
+    },
+    "projects": {
+      "title": "Featured Projects",
+      "subtitle": "A selection of my recent work that showcases my expertise",
+      "viewAll": "View All Projects"
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Senior Developer & Problem Solver",
+    "description": "With over a decade of experience in full-stack development, I specialize in building scalable web applications that make a difference. My expertise spans modern JavaScript frameworks, cloud architecture, and creating intuitive user experiences.",
+    "skills": {
+      "title": "Technical Expertise",
+      "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "devops": "DevOps & Cloud",
+        "tools": "Tools & Methods"
+      }
+    },
+    "experience": {
+      "title": "Experience Highlights",
+      "years": "10+ Years in Software Development"
+    }
+  },
+  "projects": {
+    "title": "All Projects",
+    "subtitle": "Explore my portfolio of work",
+    "filters": {
+      "all": "All",
+      "web": "Web Apps",
+      "mobile": "Mobile",
+      "open-source": "Open Source"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "connect": "Connect with me",
+    "theme": "Theme"
+  },
+  "contact": {
+    "title": "Let's Work Together",
+    "subtitle": "Have a project in mind? Let's create something amazing together.",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailPlaceholder": "your.email@example.com",
+    "phone": "Phone",
+    "phonePlaceholder": "+1 (555) 000-0000",
+    "optional": "optional",
+    "message": "Message",
+    "messagePlaceholder": "Tell me about your project...",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Thank you! I'll get back to you soon.",
+    "error": "Oops! Something went wrong. Please try again."
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, we couldn't find the page you're looking for. It might have been moved or deleted.",
+    "goHome": "Go Home",
+    "goBack": "Go Back"
   }
 }
