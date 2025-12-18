@@ -162,19 +162,10 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
         type="submit"
         size="lg"
         className="w-full"
-        disabled={isSubmitting}
+        loading={isSubmitting}
+        icon={Send}
       >
-        {isSubmitting ? (
-          <>
-            <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-            {t("sending")}
-          </>
-        ) : (
-          <>
-            <Send className="mr-2 h-4 w-4" />
-            {t("send")}
-          </>
-        )}
+        {isSubmitting ? t("sending") : t("send")}
       </Button>
 
       {/* Status Messages */}
