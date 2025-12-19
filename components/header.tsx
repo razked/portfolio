@@ -20,7 +20,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ContactForm } from "@/components/contact-form";
+import { Logo } from "@/components/logo";
 
 interface HeaderProps {
   locale: string;
@@ -33,6 +33,7 @@ export function Header({ locale }: HeaderProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isVisible, setIsVisible] = React.useState(true);
   const [lastScrollY, setLastScrollY] = React.useState(0);
+  const isRTL = locale === "he";
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -82,20 +83,21 @@ export function Header({ locale }: HeaderProps) {
       }`}
     >
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href={`/${locale}`} className="flex items-center space-x-2">
-          <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            RK
-          </span>
-        </Link>
+        <Logo locale={locale} size="sm" />
 
         <nav className="hidden md:flex items-center space-x-1">
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
               <Button
-                variant={isActive(item.href) ? "secondary" : "ghost"}
-                className="text-sm font-medium"
+                variant="ghost"
+                className="text-sm font-medium cursor-pointer flex items-center gap-2"
               >
-                {item.name}
+                <span
+                  className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                    isActive(item.href) ? "bg-primary" : "bg-transparent"
+                  }`}
+                ></span>
+                <span>{item.name}</span>
               </Button>
             </Link>
           ))}
@@ -104,7 +106,11 @@ export function Header({ locale }: HeaderProps) {
         <div className="flex items-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon" className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="relative cursor-pointer"
+              >
                 <Globe className="h-4 w-4" />
                 <span className="sr-only">Change language</span>
               </Button>
@@ -129,32 +135,62 @@ export function Header({ locale }: HeaderProps) {
           <div className="md:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon">
+                <Button variant="ghost" size="icon">
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent className="flex flex-col h-full">
+              <SheetContent
+                side={isRTL ? "left" : "right"}
+                className={`flex flex-col h-full p-6 ${
+                  isRTL ? "[&>button]:left-4 [&>button]:right-auto" : ""
+                }`}
+              >
                 <SheetHeader className="flex-shrink-0">
-                  <SheetTitle>{tContact("title")}</SheetTitle>
-                  <SheetDescription>{tContact("subtitle")}</SheetDescription>
+                  <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                  <div className="mb-6">
+                    <Logo locale={locale} size="lg" />
+                  </div>
                 </SheetHeader>
-                <div className="flex-1 overflow-y-auto mt-6 space-y-6 pr-2">
+                <div className="flex-1 overflow-y-auto -mx-6 px-6">
                   <nav className="flex flex-col gap-2">
                     {navigation.map((item) => (
                       <Button
                         key={item.name}
-                        variant={isActive(item.href) ? "secondary" : "ghost"}
-                        className="w-full justify-start"
+                        variant="ghost"
+                        className="w-full justify-start cursor-pointer"
                         asChild
                         onClick={() => setIsOpen(false)}
                       >
-                        <Link href={item.href}>{item.name}</Link>
+                        <Link
+                          href={item.href}
+                          className="flex items-center gap-2"
+                        >
+                          <span
+                            className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                              isActive(item.href)
+                                ? "bg-primary"
+                                : "bg-transparent"
+                            }`}
+                          ></span>
+                          <span>{item.name}</span>
+                        </Link>
                       </Button>
                     ))}
                   </nav>
-                  <div className="pt-4 border-t">
-                    <ContactForm onSuccess={() => setIsOpen(false)} />
-                  </div>
+                </div>
+                <div className="flex-shrink-0 space-y-4 pb-6">
+                  <h3 className="text-lg font-semibold">Let's Work Together</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Have a project in mind? Let's discuss how I can help bring
+                    your ideas to life.
+                  </p>
+                  <Button
+                    className="w-full cursor-pointer"
+                    asChild
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Link href={`/${locale}#contact`}>Get in Touch</Link>
+                  </Button>
                 </div>
               </SheetContent>
             </Sheet>

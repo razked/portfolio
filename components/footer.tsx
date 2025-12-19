@@ -3,19 +3,22 @@
 import * as React from "react";
 import { useTranslations } from "next-intl";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Separator } from "@/components/ui/separator";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon, EmailIcon } from "@/components/social-icons";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/logo";
+import { useParams } from "next/navigation";
 
 export function Footer() {
   const t = useTranslations("footer");
   const currentYear = new Date().getFullYear();
+  const params = useParams();
+  const locale = (params?.locale as string) || "en";
 
   const socialLinks = [
-    { name: "GitHub", icon: Github, href: "https://github.com" },
-    { name: "LinkedIn", icon: Linkedin, href: "https://linkedin.com" },
-    { name: "Email", icon: Mail, href: "mailto:hello@example.com" },
+    { name: "GitHub", icon: GithubIcon, href: "https://github.com" },
+    { name: "LinkedIn", icon: LinkedinIcon, href: "https://linkedin.com" },
+    { name: "Email", icon: EmailIcon, href: "mailto:hello@example.com" },
   ];
 
   return (
@@ -24,11 +27,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* Brand Section */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                Raz Kedem
-              </span>
-            </div>
+            <Logo locale={locale} size="lg" />
             <p className="text-sm text-muted-foreground max-w-xs">
               Senior Full Stack Developer crafting elegant solutions to complex
               problems.
@@ -40,14 +39,19 @@ export function Footer() {
             <h3 className="text-sm font-semibold">{t("connect")}</h3>
             <div className="flex gap-2">
               {socialLinks.map((link) => (
-                <Button key={link.name} variant="outline" size="icon" asChild>
+                <Button key={link.name} variant="ghost" size="icon" asChild>
                   <a
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.name}
+                    className="cursor-pointer"
                   >
-                    <link.icon className="h-4 w-4" />
+                    <link.icon
+                      className={`h-5 w-5 ${
+                        link.name === "Email" ? "text-primary" : ""
+                      }`}
+                    />
                   </a>
                 </Button>
               ))}
