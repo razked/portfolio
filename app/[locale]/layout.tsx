@@ -44,7 +44,7 @@ export default async function RootLayout({
         className={`${montserrat.variable} ${jetbrainsMono.variable} antialiased font-sans`}
         style={{ fontFamily: "var(--font-montserrat)" }}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <NextIntlClientProvider messages={messages}>
             <div className="flex min-h-screen flex-col">
               <Header locale={locale} />
