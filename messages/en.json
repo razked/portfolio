@@ -7,14 +7,14 @@
   "home": {
     "title": "Hello world!",
     "hero": {
-      "name": "Raz Kedem",
-      "title": "One Man Army",
-      "description": " From planning to Production",
+      "name": "Not just code.",
+      "title": "",
+      "description": "A complete web product, from idea to production.",
       "cta": "View My Work",
       "contact": "Get In Touch"
     },
     "approach": {
-      "title": "How I Work & Think",
+      "title": "What I do",
       "subtitle": "My development philosophy combines technical excellence with user-centric design",
       "principles": [
         {

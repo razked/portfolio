@@ -82,10 +82,10 @@ export function Header({ locale }: HeaderProps) {
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8 relative">
         <Logo locale={locale} size="sm" />
 
-        <nav className="hidden md:flex items-center space-x-1">
+        <nav className="hidden md:flex items-center space-x-1 absolute left-1/2 -translate-x-1/2">
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
               <Button
@@ -98,12 +98,13 @@ export function Header({ locale }: HeaderProps) {
                   }`}
                 ></span>
                 <span>{item.name}</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-transparent"></span>
               </Button>
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 ml-auto">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button

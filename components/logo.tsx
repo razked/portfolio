@@ -17,6 +17,8 @@ export function Logo({
     lg: "text-2xl",
   };
 
+  const logoText = locale === "he" ? "רז קדם" : "Raz Kedem";
+
   return (
     <Link
       href={`/${locale}`}
@@ -25,7 +27,7 @@ export function Logo({
       <span
         className={`${sizeClasses[size]} font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent`}
       >
-        RK
+        {logoText}
       </span>
     </Link>
   );

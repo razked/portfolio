@@ -44,8 +44,8 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-background section-border-bottom">
-        <div className="container mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+      <section className="relative overflow-hidden section-border-bottom min-h-[calc(100vh-4rem)] flex items-center">
+        <div className="container mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 w-full">
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
               <span className="block">{t("hero.name")}</span>
@@ -70,10 +70,28 @@ export default function Home() {
               </Button>
             </div>
           </div>
+
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+            <div className="w-6 h-10 rounded-full border-2 border-muted-foreground flex items-start justify-center p-2">
+              <div className="w-1.5 h-2 bg-muted-foreground rounded-full"></div>
+            </div>
+            <svg
+              className="w-4 h-4 text-muted-foreground"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </div>
         </div>
 
         {/* Decorative Elements */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 -z-10 overflow-hidden bg-background">
           <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
             <div className="h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl" />
           </div>
