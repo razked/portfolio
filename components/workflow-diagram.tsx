@@ -1,266 +1,200 @@
 "use client";
 
-import { useCallback } from "react";
+import { useEffect, useState } from "react";
 import {
   ReactFlow,
   Background,
-  addEdge,
-  useNodesState,
-  useEdgesState,
   type Node,
   type Edge,
-  type Connection,
-  MarkerType,
+  Position,
+  PanOnScrollMode,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { useTheme } from "next-themes";
 
-const initialNodes: Node[] = [
+const nodeStyle = {
+  background: "hsl(var(--card))",
+  border: "2px solid hsl(var(--border))",
+  borderRadius: "8px",
+  padding: "12px 24px",
+  fontSize: "14px",
+  color: "hsl(var(--foreground))",
+  fontWeight: "500",
+  width: "auto",
+  minWidth: "150px",
+  textAlign: "center" as const,
+};
+
+// Horizontal layout for desktop
+const horizontalNodes: Node[] = [
   {
     id: "1",
     type: "input",
-    data: { label: "📋 Strategic Planning" },
-    position: { x: 0, y: 125 },
-    style: {
-      background: "hsl(var(--primary))",
-      color: "hsl(var(--primary-foreground))",
-      border: "2px solid hsl(var(--primary))",
-      borderRadius: "12px",
-      padding: "16px",
-      fontSize: "14px",
-      fontWeight: "600",
-    },
+    data: { label: "Idea & Planning" },
+    position: { x: 0, y: 0 },
+    style: nodeStyle,
+    sourcePosition: Position.Right,
   },
   {
     id: "2",
-    data: { label: "🎨 Design & Architecture" },
-    position: { x: 250, y: 50 },
-    style: {
-      background: "hsl(var(--card))",
-      color: "hsl(var(--card-foreground))",
-      border: "2px solid hsl(var(--border))",
-      borderRadius: "12px",
-      padding: "16px",
-      fontSize: "14px",
-      fontWeight: "600",
-    },
+    data: { label: "Design" },
+    position: { x: 200, y: 0 },
+    style: nodeStyle,
+    sourcePosition: Position.Right,
+    targetPosition: Position.Left,
   },
   {
     id: "3",
-    data: { label: "⚡ Clean Code Implementation" },
-    position: { x: 250, y: 200 },
-    style: {
-      background: "hsl(var(--card))",
-      color: "hsl(var(--card-foreground))",
-      border: "2px solid hsl(var(--border))",
-      borderRadius: "12px",
-      padding: "16px",
-      fontSize: "14px",
-      fontWeight: "600",
-    },
+    data: { label: "Development" },
+    position: { x: 400, y: 0 },
+    style: nodeStyle,
+    sourcePosition: Position.Right,
+    targetPosition: Position.Left,
   },
   {
     id: "4",
-    data: { label: "🧪 Testing & Quality" },
-    position: { x: 500, y: 125 },
-    style: {
-      background: "hsl(var(--card))",
-      color: "hsl(var(--card-foreground))",
-      border: "2px solid hsl(var(--border))",
-      borderRadius: "12px",
-      padding: "16px",
-      fontSize: "14px",
-      fontWeight: "600",
-    },
+    data: { label: "Testing" },
+    position: { x: 600, y: 0 },
+    style: nodeStyle,
+    sourcePosition: Position.Right,
+    targetPosition: Position.Left,
   },
   {
     id: "5",
-    data: { label: "🚀 Deployment" },
-    position: { x: 750, y: 50 },
-    style: {
-      background: "hsl(var(--card))",
-      color: "hsl(var(--card-foreground))",
-      border: "2px solid hsl(var(--border))",
-      borderRadius: "12px",
-      padding: "16px",
-      fontSize: "14px",
-      fontWeight: "600",
-    },
-  },
-  {
-    id: "6",
-    data: { label: "🔄 Continuous Improvement" },
-    position: { x: 750, y: 200 },
-    style: {
-      background: "hsl(var(--card))",
-      color: "hsl(var(--card-foreground))",
-      border: "2px solid hsl(var(--border))",
-      borderRadius: "12px",
-      padding: "16px",
-      fontSize: "14px",
-      fontWeight: "600",
-    },
-  },
-  {
-    id: "7",
     type: "output",
-    data: { label: "✨ Exceptional Results" },
-    position: { x: 1000, y: 125 },
-    style: {
-      background: "hsl(var(--primary))",
-      color: "hsl(var(--primary-foreground))",
-      border: "2px solid hsl(var(--primary))",
-      borderRadius: "12px",
-      padding: "16px",
-      fontSize: "14px",
-      fontWeight: "600",
-    },
+    data: { label: "Production" },
+    position: { x: 800, y: 0 },
+    style: nodeStyle,
+    targetPosition: Position.Left,
   },
 ];
 
-const initialEdges: Edge[] = [
+// Vertical layout for mobile
+const verticalNodes: Node[] = [
+  {
+    id: "1",
+    type: "input",
+    data: { label: "Idea & Planning" },
+    position: { x: 50, y: 0 },
+    style: nodeStyle,
+    sourcePosition: Position.Bottom,
+  },
+  {
+    id: "2",
+    data: { label: "Design" },
+    position: { x: 50, y: 100 },
+    style: nodeStyle,
+    sourcePosition: Position.Bottom,
+    targetPosition: Position.Top,
+  },
+  {
+    id: "3",
+    data: { label: "Development" },
+    position: { x: 50, y: 200 },
+    style: nodeStyle,
+    sourcePosition: Position.Bottom,
+    targetPosition: Position.Top,
+  },
+  {
+    id: "4",
+    data: { label: "Testing" },
+    position: { x: 50, y: 300 },
+    style: nodeStyle,
+    sourcePosition: Position.Bottom,
+    targetPosition: Position.Top,
+  },
+  {
+    id: "5",
+    type: "output",
+    data: { label: "Production" },
+    position: { x: 50, y: 400 },
+    style: nodeStyle,
+    targetPosition: Position.Top,
+  },
+];
+
+const edges: Edge[] = [
   {
     id: "e1-2",
     source: "1",
     target: "2",
     animated: true,
-    type: "smoothstep",
-    style: { strokeWidth: 3 },
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-      width: 20,
-      height: 20,
-    },
   },
   {
-    id: "e1-3",
-    source: "1",
+    id: "e2-3",
+    source: "2",
     target: "3",
     animated: true,
-    type: "smoothstep",
-    style: { strokeWidth: 3 },
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-      width: 20,
-      height: 20,
-    },
-  },
-  {
-    id: "e2-4",
-    source: "2",
-    target: "4",
-    animated: true,
-    type: "smoothstep",
-    style: { strokeWidth: 3 },
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-      width: 20,
-      height: 20,
-    },
   },
   {
     id: "e3-4",
     source: "3",
     target: "4",
     animated: true,
-    type: "smoothstep",
-    style: { strokeWidth: 3 },
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-      width: 20,
-      height: 20,
-    },
   },
   {
     id: "e4-5",
     source: "4",
     target: "5",
     animated: true,
-    type: "smoothstep",
-    style: { strokeWidth: 3 },
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-      width: 20,
-      height: 20,
-    },
-  },
-  {
-    id: "e4-6",
-    source: "4",
-    target: "6",
-    animated: true,
-    type: "smoothstep",
-    style: { strokeWidth: 3 },
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-      width: 20,
-      height: 20,
-    },
-  },
-  {
-    id: "e5-7",
-    source: "5",
-    target: "7",
-    animated: true,
-    type: "smoothstep",
-    style: { strokeWidth: 3 },
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-      width: 20,
-      height: 20,
-    },
-  },
-  {
-    id: "e6-7",
-    source: "6",
-    target: "7",
-    animated: true,
-    type: "smoothstep",
-    style: { strokeWidth: 3 },
-    markerEnd: {
-      type: MarkerType.ArrowClosed,
-      width: 20,
-      height: 20,
-    },
   },
 ];
 
 export function WorkflowDiagram() {
-  const { theme } = useTheme();
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const onConnect = useCallback(
-    (params: Connection) => setEdges((eds) => addEdge(params, eds)),
-    [setEdges]
-  );
+  useEffect(() => {
+    setIsMounted(true);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  if (!isMounted) {
+    return <div className="h-[500px] md:h-[200px] w-full" />;
+  }
 
   return (
-    <div className="h-[400px] w-full rounded-lg border border-border bg-background overflow-hidden">
+    <div className="h-[500px] md:h-[200px] w-full workflow-diagram">
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+          .workflow-diagram .react-flow__node {
+            border: 2px solid #888 !important;
+            border-radius: 8px !important;
+            padding: 0 !important;
+          }
+          .workflow-diagram .react-flow__node-default,
+          .workflow-diagram .react-flow__node-input,
+          .workflow-diagram .react-flow__node-output {
+            border: 2px solid #888 !important;
+            padding: 0 !important;
+          }
+        `,
+        }}
+      />
       <ReactFlow
-        nodes={nodes}
+        nodes={isMobile ? verticalNodes : horizontalNodes}
         edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
         fitView
-        attributionPosition="bottom-left"
-        proOptions={{ hideAttribution: true }}
+        fitViewOptions={{
+          padding: 0.2,
+          includeHiddenNodes: false,
+        }}
         nodesDraggable={false}
         nodesConnectable={false}
         elementsSelectable={false}
-        panOnScroll={false}
-        panOnDrag={false}
         zoomOnScroll={false}
         zoomOnPinch={false}
-        zoomOnDoubleClick={false}
+        panOnDrag={false}
         preventScrolling={false}
-        defaultEdgeOptions={{
-          animated: true,
-          style: { strokeWidth: 3, stroke: "#888" },
-        }}
+        panOnScroll={false}
+        proOptions={{ hideAttribution: true }}
       >
-        <Background color="#3a3b50" gap={16} />
+        <Background />
       </ReactFlow>
     </div>
   );
