@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import { AvatarVideo } from "@/components/avatar-video";
 
 export default function AboutPage() {
   const t = useTranslations("about");
@@ -90,11 +91,7 @@ export default function AboutPage() {
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto flex max-w-5xl flex-col items-center gap-12 lg:flex-row">
             <div className="flex-shrink-0">
-              <Avatar className="h-48 w-48 border-4 border-border">
-                <AvatarFallback className="text-6xl font-bold bg-gradient-to-br from-primary to-primary/60">
-                  RK
-                </AvatarFallback>
-              </Avatar>
+              <AvatarVideo className="h-32 w-32 rounded-full object-cover sm:h-40 sm:w-40 lg:h-48 lg:w-48" />
             </div>
 
             <div className="flex-1 text-center lg:text-left">

@@ -10,8 +10,8 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
-import { WorkflowDiagram } from "@/components/workflow-diagram";
 import { ContactForm } from "@/components/contact-form";
+import { AvatarVideo } from "@/components/avatar-video";
 
 export default function Home() {
   const t = useTranslations("home");
@@ -47,6 +47,9 @@ export default function Home() {
       <section className="relative overflow-hidden section-border-bottom min-h-[calc(100vh-4rem)] flex items-center">
         <div className="container mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 w-full">
           <div className="mx-auto max-w-3xl text-center">
+            <div className="mb-8 flex justify-center">
+              <AvatarVideo className="h-32 w-32 rounded-full object-cover sm:h-40 sm:w-40 lg:h-48 lg:w-48" />
+            </div>
             <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
               <span className="block">{t("hero.name")}</span>
               <span className="block bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -95,9 +98,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mx-auto max-w-5xl card-gradient rounded-lg overflow-hidden">
-            <WorkflowDiagram />
-          </div>
+          <div className="mx-auto max-w-6xl">{/* <WorkflowDiagram /> */}</div>
         </div>
       </section>
 
