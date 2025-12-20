@@ -111,9 +111,10 @@ export default function Home() {
             <p className="text-lg text-muted-foreground mb-8">
               {t("approach.subtitle")}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
               {(() => {
                 const bullets = t.raw("approach.bullets");
+
                 return bullets.flatMap((bullet: string, index: number) => {
                   const config = APPROACH_BULLET_CONFIGS[index];
                   const Icon = config.icon;
@@ -121,26 +122,18 @@ export default function Home() {
                   return [
                     <div
                       key={`item-${index}`}
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-2 text-sm font-medium tracking-wide"
+                      style={{ color: config.color }}
                     >
-                      <Icon
-                        className="h-4 w-4"
-                        style={{ color: config.color }}
-                      />
-                      <span
-                        className="text-sm font-medium"
-                        style={{ color: config.color }}
-                      >
-                        {bullet}
-                      </span>
+                      <Icon className="h-4 w-4 opacity-90" />
+                      <span>{bullet}</span>
                     </div>,
+
                     index < bullets.length - 1 && (
                       <span
                         key={`separator-${index}`}
-                        className="text-muted-foreground/50"
-                      >
-                        •
-                      </span>
+                        className="h-1 w-1 rounded-full bg-muted-foreground/40"
+                      />
                     ),
                   ].filter(Boolean);
                 });
