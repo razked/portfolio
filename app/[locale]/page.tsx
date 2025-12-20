@@ -60,7 +60,7 @@ export default function Home() {
 
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button size="lg" asChild className="group">
-                <Link href="#projects">
+                <Link href="#who-am-i">
                   {t("hero.cta")}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
@@ -73,15 +73,18 @@ export default function Home() {
         </div>
 
         {/* Decorative Elements */}
-        <div className="absolute inset-0 -z-10 overflow-hidden bg-background">
+        {/* <div className="absolute inset-0 -z-10 overflow-hidden bg-background">
           <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
             <div className="h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl" />
           </div>
-        </div>
+        </div> */}
       </section>
 
       {/* How I Work & Think Section */}
-      <section className="relative py-24 sm:py-32 bg-background section-border-bottom">
+      <section
+        id="who-am-i"
+        className="relative py-24 sm:py-32 bg-background section-border-bottom"
+      >
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center mb-12">
             <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">

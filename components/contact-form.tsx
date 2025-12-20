@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useTranslations } from "next-intl";
-import { Mail, User, MessageSquare, Send, Phone } from "lucide-react";
+import { Send } from "lucide-react";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -75,10 +75,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* Name Field */}
       <div className="space-y-2">
-        <Label htmlFor="name" className="flex items-center gap-2">
-          <User className="h-4 w-4" />
-          {t("name")}
-        </Label>
+        <Label htmlFor="name">{t("name")}</Label>
         <Input
           id="name"
           type="text"
@@ -94,10 +91,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
 
       {/* Email Field */}
       <div className="space-y-2">
-        <Label htmlFor="email" className="flex items-center gap-2">
-          <Mail className="h-4 w-4" />
-          {t("email")}
-        </Label>
+        <Label htmlFor="email">{t("email")}</Label>
         <Input
           id="email"
           type="email"
@@ -114,8 +108,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
 
       {/* Phone Field (Optional) */}
       <div className="space-y-2">
-        <Label htmlFor="phone" className="flex items-center gap-2">
-          <Phone className="h-4 w-4" />
+        <Label htmlFor="phone">
           {t("phone")}{" "}
           <span className="text-muted-foreground text-xs">
             ({t("optional")})
@@ -137,8 +130,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
 
       {/* Message Field */}
       <div className="space-y-2">
-        <Label htmlFor="message" className="flex items-center gap-2">
-          <MessageSquare className="h-4 w-4" />
+        <Label htmlFor="message">
           {t("message")}{" "}
           <span className="text-muted-foreground text-xs">
             ({t("optional")})
@@ -175,7 +167,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
         </div>
       )}
       {submitStatus === "error" && (
-        <div className="rounded-lg bg-red-50 dark:bg-red-900/20 p-4 text-sm text-red-800 dark:text-red-200">
+        <div className="rounded-lg bg-red-50 dark:bg-red-400/8 p-4 text-sm text-red-800 dark:text-destructive">
           {t("error")}
         </div>
       )}

@@ -2,7 +2,7 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "projects": "Projects"
+    "experience": "Experience"
   },
   "home": {
     "title": "Hello world!",
@@ -10,7 +10,7 @@
       "name": "Not just code.",
       "title": "",
       "description": "A complete web product, from idea to production.",
-      "cta": "View My Work",
+      "cta": "Who am I?",
       "contact": "Get In Touch"
     },
     "approach": {

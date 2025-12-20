@@ -5,17 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { Globe, Menu } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Linkedin, Menu } from "lucide-react";
+import { socialLinks } from "@/config/social-links";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -60,7 +54,7 @@ export function Header({ locale }: HeaderProps) {
   const navigation = [
     { name: t("home"), href: `/${locale}` },
     { name: t("about"), href: `/${locale}/about` },
-    { name: t("projects"), href: `/${locale}/projects` },
+    { name: t("experience"), href: `/${locale}/experience` },
   ];
 
   const isActive = (href: string) => {
@@ -68,12 +62,6 @@ export function Header({ locale }: HeaderProps) {
       return pathname === `/${locale}`;
     }
     return pathname?.startsWith(href);
-  };
-
-  const switchLocale = (newLocale: string) => {
-    const path =
-      pathname?.replace(`/${locale}`, `/${newLocale}`) || `/${newLocale}`;
-    window.location.href = path;
   };
 
   return (
@@ -105,38 +93,31 @@ export function Header({ locale }: HeaderProps) {
         </nav>
 
         <div className="flex items-center gap-2 ml-auto">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="relative cursor-pointer"
-              >
-                <Globe className="h-4 w-4" />
-                <span className="sr-only">Change language</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem
-                onClick={() => switchLocale("en")}
-                className={locale === "en" ? "bg-accent" : ""}
-              >
-                English
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => switchLocale("he")}
-                className={locale === "he" ? "bg-accent" : ""}
-              >
-                עברית
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="relative cursor-pointer [&_svg]:text-white"
+            asChild
+          >
+            <a
+              href={socialLinks.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="h-4 w-4" />
+            </a>
+          </Button>
 
           {/* Mobile menu */}
           <div className="md:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="[&_svg]:text-white"
+                >
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>

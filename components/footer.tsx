@@ -1,13 +1,11 @@
 "use client";
 
-import * as React from "react";
 import { useTranslations } from "next-intl";
-import { ModeToggle } from "@/components/mode-toggle";
-import { GithubIcon, LinkedinIcon, EmailIcon } from "@/components/social-icons";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
 import { useParams } from "next/navigation";
+import { Github, Linkedin } from "lucide-react";
+import { socialLinks } from "@/config/social-links";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -15,16 +13,15 @@ export function Footer() {
   const params = useParams();
   const locale = (params?.locale as string) || "en";
 
-  const socialLinks = [
-    { name: "GitHub", icon: GithubIcon, href: "https://github.com" },
-    { name: "LinkedIn", icon: LinkedinIcon, href: "https://linkedin.com" },
-    { name: "Email", icon: EmailIcon, href: "mailto:hello@example.com" },
+  const footerSocialLinks = [
+    { name: "GitHub", icon: Github, href: socialLinks.github },
+    { name: "LinkedIn", icon: Linkedin, href: socialLinks.linkedin },
   ];
 
   return (
     <footer className="bg-background">
       <div className="container mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {/* Brand Section */}
           <div className="space-y-4">
             <Logo locale={locale} size="lg" />
@@ -38,7 +35,7 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="text-sm font-semibold">{t("connect")}</h3>
             <div className="flex gap-2">
-              {socialLinks.map((link) => (
+              {footerSocialLinks.map((link) => (
                 <Button key={link.name} variant="ghost" size="icon" asChild>
                   <a
                     href={link.href}
@@ -47,21 +44,11 @@ export function Footer() {
                     aria-label={link.name}
                     className="cursor-pointer"
                   >
-                    <link.icon
-                      className={`h-5 w-5 ${
-                        link.name === "Email" ? "text-primary" : ""
-                      }`}
-                    />
+                    <link.icon className="size-5" />
                   </a>
                 </Button>
               ))}
             </div>
-          </div>
-
-          {/* Theme Toggle */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold">{t("theme")}</h3>
-            <ModeToggle />
           </div>
         </div>
 
@@ -71,20 +58,6 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">
             © {currentYear} Raz Kedem. {t("rights")}
           </p>
-          <div className="flex gap-4 text-sm text-muted-foreground">
-            <Link
-              href="/privacy"
-              className="hover:text-foreground transition-colors"
-            >
-              Privacy
-            </Link>
-            <Link
-              href="/terms"
-              className="hover:text-foreground transition-colors"
-            >
-              Terms
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

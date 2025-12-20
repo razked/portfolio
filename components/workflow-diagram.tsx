@@ -7,7 +7,6 @@ import {
   type Node,
   type Edge,
   Position,
-  PanOnScrollMode,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
