@@ -1,14 +1,10 @@
 export default function Loading() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="flex flex-col items-center gap-4">
-        <div className="relative h-16 w-16">
-          <div className="absolute inset-0 rounded-full border-4 border-muted"></div>
-          <div className="absolute inset-0 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
-        </div>
-        <p className="text-base font-medium text-foreground animate-pulse">
-          Loading...
-        </p>
+      <div className="flex items-center gap-2">
+        <div className="h-2 w-2 rounded-full bg-primary animate-bounce [animation-delay:-0.3s]"></div>
+        <div className="h-2 w-2 rounded-full bg-primary animate-bounce [animation-delay:-0.15s]"></div>
+        <div className="h-2 w-2 rounded-full bg-primary animate-bounce"></div>
       </div>
     </div>
   );

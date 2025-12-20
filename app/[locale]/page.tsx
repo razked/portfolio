@@ -48,7 +48,7 @@ export default function Home() {
         <div className="container mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 w-full">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-8 flex justify-center">
-              <AvatarVideo className="h-32 w-32 rounded-full object-cover sm:h-40 sm:w-40 lg:h-48 lg:w-48" />
+              <AvatarVideo className="h-32 w-32 rounded-full object-cover sm:h-50 sm:w-50 lg:h-48 lg:w-48" />
             </div>
             <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
               <span className="block">{t("hero.name")}</span>
@@ -121,7 +121,7 @@ export default function Home() {
             {featuredProjects.map((project, index) => (
               <Card
                 key={index}
-                className="group overflow-hidden card-gradient transition-all hover:shadow-xl hover:-translate-y-2"
+                className="group overflow-hidden transition-all hover:shadow-xl hover:-translate-y-2"
               >
                 <CardHeader>
                   <div className="mb-4 text-6xl">{project.image}</div>
@@ -171,7 +171,7 @@ export default function Home() {
                 {tContact("subtitle")}
               </p>
             </div>
-            <Card className="card-gradient">
+            <Card>
               <CardContent className="pt-6">
                 <ContactForm />
               </CardContent>

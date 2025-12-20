@@ -9,12 +9,12 @@
     "hero": {
       "name": "More than code.",
       "title": "",
-      "description": "A complete web product, from idea to production.",
+      "description": "I build complete web products, from idea to production.",
       "cta": "Who am I?",
       "contact": "Get In Touch"
     },
     "approach": {
-      "title": "What I do",
+      "title": "Who I am",
       "subtitle": "My development philosophy combines technical excellence with user-centric design",
       "principles": [
         {
@@ -52,12 +52,90 @@
         "backend": "Backend",
         "devops": "DevOps & Cloud",
         "tools": "Tools & Methods"
+      },
+      "list": {
+        "frontend": [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "Vue.js",
+          "Redux",
+          "React Query",
+          "Framer Motion"
+        ],
+        "backend": [
+          "Node.js",
+          "Python",
+          "PostgreSQL",
+          "MongoDB",
+          "Redis",
+          "GraphQL",
+          "REST APIs",
+          "Microservices"
+        ],
+        "devops": [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "CI/CD",
+          "GitHub Actions",
+          "Terraform",
+          "Vercel",
+          "Nginx"
+        ],
+        "tools": [
+          "Git",
+          "Agile/Scrum",
+          "TDD",
+          "System Design",
+          "Code Review",
+          "Mentoring",
+          "Documentation",
+          "Performance Optimization"
+        ]
       }
     },
     "experience": {
       "title": "Experience Highlights",
       "years": "10+ Years in Software Development"
     }
+  },
+  "experience": {
+    "title": "Experience Highlights",
+    "years": "10+ Years in Software Development",
+    "items": [
+      {
+        "period": "2020 - Present",
+        "role": "Senior Full Stack Developer",
+        "company": "Tech Innovations Inc.",
+        "achievements": [
+          "Led development of enterprise SaaS platform serving 10,000+ users",
+          "Reduced application load time by 60% through optimization",
+          "Mentored team of 5 junior developers"
+        ]
+      },
+      {
+        "period": "2018 - 2020",
+        "role": "Full Stack Developer",
+        "company": "Digital Solutions Ltd.",
+        "achievements": [
+          "Built and deployed 15+ client projects",
+          "Implemented CI/CD pipeline reducing deployment time by 75%",
+          "Introduced TypeScript and modern development practices"
+        ]
+      },
+      {
+        "period": "2015 - 2018",
+        "role": "Frontend Developer",
+        "company": "Creative Agency",
+        "achievements": [
+          "Developed responsive web applications for major brands",
+          "Improved accessibility scores to AAA standard",
+          "Created reusable component library"
+        ]
+      }
+    ]
   },
   "projects": {
     "title": "All Projects",

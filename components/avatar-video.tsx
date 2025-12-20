@@ -25,7 +25,7 @@ export function AvatarVideo({ className = "", poster }: AvatarVideoProps) {
       muted
       autoPlay
       playsInline
-      loop
+      // loop
       preload="auto"
       controls={false}
       poster="/avatar.jpg"
