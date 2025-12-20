@@ -9,9 +9,24 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles, Zap, Palette } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { AvatarVideo } from "@/components/avatar-video";
+
+const APPROACH_BULLET_CONFIGS = [
+  {
+    icon: Sparkles,
+    color: "var(--primary)",
+  },
+  {
+    icon: Zap,
+    color: "oklch(0.587 0.2158 281.66)",
+  },
+  {
+    icon: Palette,
+    color: "oklch(0.7534 0.1349 67.6)",
+  },
+] as const;
 
 export default function Home() {
   const t = useTranslations("home");
@@ -83,7 +98,7 @@ export default function Home() {
         </div> */}
       </section>
 
-      {/* How I Work & Think Section */}
+      {/* WHO AM I SECTION */}
       <section
         id="who-am-i"
         className="relative py-24 sm:py-32 bg-background section-border-bottom"
@@ -93,12 +108,54 @@ export default function Home() {
             <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
               {t("approach.title")}
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-muted-foreground mb-8">
               {t("approach.subtitle")}
             </p>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              {(() => {
+                const bullets = t.raw("approach.bullets");
+                return bullets.flatMap((bullet: string, index: number) => {
+                  const config = APPROACH_BULLET_CONFIGS[index];
+                  const Icon = config.icon;
+
+                  return [
+                    <div
+                      key={`item-${index}`}
+                      className="flex items-center gap-2"
+                    >
+                      <Icon
+                        className="h-4 w-4"
+                        style={{ color: config.color }}
+                      />
+                      <span
+                        className="text-sm font-medium"
+                        style={{ color: config.color }}
+                      >
+                        {bullet}
+                      </span>
+                    </div>,
+                    index < bullets.length - 1 && (
+                      <span
+                        key={`separator-${index}`}
+                        className="text-muted-foreground/50"
+                      >
+                        •
+                      </span>
+                    ),
+                  ].filter(Boolean);
+                });
+              })()}
+            </div>
           </div>
 
-          <div className="mx-auto max-w-6xl">{/* <WorkflowDiagram /> */}</div>
+          <div className="mt-16 text-center">
+            <Button size="lg" variant="outline" asChild>
+              <Link href="/about">
+                {t("approach.cta")}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -157,10 +214,7 @@ export default function Home() {
       </section>
 
       {/* Contact Form Section */}
-      <section
-        id="contact"
-        className="relative bg-background py-24 section-border-bottom"
-      >
+      <section id="contact" className="relative bg-background py-24">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl">
             <div className="text-center mb-12">

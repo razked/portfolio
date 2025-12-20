@@ -10,12 +10,14 @@
       "name": "More than code.",
       "title": "",
       "description": "I build complete web products, from idea to production.",
-      "cta": "Who am I?",
+      "cta": "About me",
       "contact": "Get In Touch"
     },
     "approach": {
       "title": "Who I am",
-      "subtitle": "My development philosophy combines technical excellence with user-centric design",
+      "subtitle": "I build web products at the intersection of engineering, UX, and long-term thinking — focusing on clarity, performance, and systems that scale without losing their human touch.",
+      "bullets": ["Clarity", "Performance", "UX"],
+      "cta": "More about me",
       "principles": [
         {
           "title": "Strategic Planning",
