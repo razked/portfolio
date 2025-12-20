@@ -22,11 +22,11 @@ export function AvatarVideo({ className = "", poster }: AvatarVideoProps) {
   return (
     <video
       ref={videoRef}
-      autoPlay
-      muted
-      playsInline
+      muted={true}
+      autoPlay={true}
+      playsInline={true}
+      loop={true}
       preload="auto"
-      poster={poster}
       className={className}
     >
       <source src="/avatar.mp4" type="video/mp4" />
