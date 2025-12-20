@@ -22,14 +22,16 @@ export function AvatarVideo({ className = "", poster }: AvatarVideoProps) {
   return (
     <video
       ref={videoRef}
-      muted={true}
-      autoPlay={true}
-      playsInline={true}
-      loop={true}
+      muted
+      autoPlay
+      playsInline
+      loop
       preload="auto"
+      controls={false}
+      poster="/avatar.jpg"
       className={className}
     >
-      <source src="/avatar.mp4" type="video/mp4" />
+      <source src="/avatar-ios.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   );
