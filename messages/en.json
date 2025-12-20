@@ -43,8 +43,8 @@
   },
   "about": {
     "title": "About Me",
-    "subtitle": "Senior Developer & Problem Solver",
-    "description": "With over a decade of experience in full-stack development, I specialize in building scalable web applications that make a difference. My expertise spans modern JavaScript frameworks, cloud architecture, and creating intuitive user experiences.",
+    "subtitle": "Senior Engineer · Frontend · UX · Full-Stack",
+    "description": "I’m a senior frontend-focused full-stack engineer with over a decade of experience building production-grade web applications. I specialize in modern React and Next.js architectures, high-quality UI/UX, and scalable backend systems. I care deeply about clarity, performance, and maintainability — with a strong focus on turning complexity into simple, intuitive user experiences.",
     "skills": {
       "title": "Technical Expertise",
       "categories": {
@@ -58,41 +58,34 @@
           "React",
           "Next.js",
           "TypeScript",
-          "Tailwind CSS",
-          "Vue.js",
           "Redux",
+          "Zustand",
           "React Query",
-          "Framer Motion"
+          "Vite",
+          "Material UI",
+          "Shadcn UI",
+          "Cakra UI",
+          "Ant Design",
+          "Tailwind CSS"
         ],
         "backend": [
           "Node.js",
+          "Express",
           "Python",
           "PostgreSQL",
           "MongoDB",
-          "Redis",
-          "GraphQL",
-          "REST APIs",
-          "Microservices"
+          "Elasticsearch",
+          "Firebase",
+          "Supabase"
         ],
-        "devops": [
-          "Docker",
-          "Kubernetes",
-          "AWS",
-          "CI/CD",
-          "GitHub Actions",
-          "Terraform",
-          "Vercel",
-          "Nginx"
-        ],
+        "devops": ["AWS", "CI/CD", "GitHub Actions", "CDK", "Vercel"],
         "tools": [
           "Git",
-          "Agile/Scrum",
-          "TDD",
-          "System Design",
-          "Code Review",
-          "Mentoring",
-          "Documentation",
-          "Performance Optimization"
+          "Figma",
+          "Adobe Suite",
+          "Jira",
+          "Authentication",
+          "Authorization"
         ]
       }
     },

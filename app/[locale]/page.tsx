@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative overflow-hidden section-border-bottom min-h-[calc(100vh-4rem)] flex items-center">
+      <section className="relative overflow-hidden section-border-bottom h-[100dvh] flex items-center -mt-16 pt-16">
         <div className="container mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 w-full">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-8 flex justify-center">
