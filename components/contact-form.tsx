@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useTranslations } from "next-intl";
-import { Send } from "lucide-react";
+import { SendIcon, type SendIconHandle } from "@/components/SendIcon";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -30,6 +30,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+  const sendIconRef = useRef<SendIconHandle>(null);
 
   const {
     register,
@@ -155,9 +156,15 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
         size="lg"
         className="w-full"
         loading={isSubmitting}
-        icon={Send}
+        onMouseEnter={() => sendIconRef.current?.startAnimation()}
+        onMouseLeave={() => sendIconRef.current?.stopAnimation()}
       >
-        {isSubmitting ? t("sending") : t("send")}
+        <span className="flex items-center gap-2">
+          {isSubmitting ? t("sending") : t("send")}
+          {!isSubmitting && (
+            <SendIcon ref={sendIconRef} size={20} isAnimated={false} />
+          )}
+        </span>
       </Button>
 
       {/* Status Messages */}

@@ -4,7 +4,16 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
 import { useParams } from "next/navigation";
-import { Github, Linkedin } from "lucide-react";
+import { useRef } from "react";
+import { GithubIcon, type GithubIconHandle } from "@/components/GithubIcon";
+import {
+  LinkedInIcon,
+  type LinkedInIconHandle,
+} from "@/components/LinkedinIcon";
+import {
+  MessageCircleIcon,
+  type MessageCircleIconHandle,
+} from "@/components/MessageCircleIcon";
 import { socialLinks } from "@/config/social-links";
 
 export function Footer() {
@@ -13,9 +22,29 @@ export function Footer() {
   const params = useParams();
   const locale = (params?.locale as string) || "en";
 
+  const githubIconRef = useRef<GithubIconHandle>(null);
+  const linkedinIconRef = useRef<LinkedInIconHandle>(null);
+  const whatsappIconRef = useRef<MessageCircleIconHandle>(null);
+
   const footerSocialLinks = [
-    { name: "GitHub", icon: Github, href: socialLinks.github },
-    { name: "LinkedIn", icon: Linkedin, href: socialLinks.linkedin },
+    {
+      name: "GitHub",
+      Icon: GithubIcon,
+      iconRef: githubIconRef,
+      href: socialLinks.github,
+    },
+    {
+      name: "LinkedIn",
+      Icon: LinkedInIcon,
+      iconRef: linkedinIconRef,
+      href: socialLinks.linkedin,
+    },
+    {
+      name: "WhatsApp",
+      Icon: MessageCircleIcon,
+      iconRef: whatsappIconRef,
+      href: socialLinks.whatsapp,
+    },
   ];
 
   return (
@@ -36,7 +65,14 @@ export function Footer() {
             <h3 className="text-sm font-semibold">{t("connect")}</h3>
             <div className="flex gap-2">
               {footerSocialLinks.map((link) => (
-                <Button key={link.name} variant="ghost" size="icon" asChild>
+                <Button
+                  key={link.name}
+                  variant="ghost"
+                  size="icon"
+                  asChild
+                  onMouseEnter={() => link.iconRef.current?.startAnimation()}
+                  onMouseLeave={() => link.iconRef.current?.stopAnimation()}
+                >
                   <a
                     href={link.href}
                     target="_blank"
@@ -44,7 +80,11 @@ export function Footer() {
                     aria-label={link.name}
                     className="cursor-pointer"
                   >
-                    <link.icon className="size-5" />
+                    <link.Icon
+                      ref={link.iconRef}
+                      size={20}
+                      isAnimated={false}
+                    />
                   </a>
                 </Button>
               ))}
@@ -54,7 +94,7 @@ export function Footer() {
 
         <div className="relative my-8 w-full section-border-bottom"></div>
 
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row pt-4">
+        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row pt-6">
           <p className="text-sm text-muted-foreground">
             © {currentYear} Raz Kedem. {t("rights")}
           </p>

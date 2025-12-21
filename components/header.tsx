@@ -5,7 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { Linkedin, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
+import { LinkedInIcon, type LinkedInIconHandle } from "@/components/LinkedinIcon";
 import { socialLinks } from "@/config/social-links";
 import {
   Sheet,
@@ -28,6 +29,7 @@ export function Header({ locale }: HeaderProps) {
   const [isVisible, setIsVisible] = React.useState(true);
   const [lastScrollY, setLastScrollY] = React.useState(0);
   const isRTL = locale === "he";
+  const linkedinIconRef = React.useRef<LinkedInIconHandle>(null);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -96,8 +98,10 @@ export function Header({ locale }: HeaderProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="relative cursor-pointer [&_svg]:text-white"
+            className="relative cursor-pointer"
             asChild
+            onMouseEnter={() => linkedinIconRef.current?.startAnimation()}
+            onMouseLeave={() => linkedinIconRef.current?.stopAnimation()}
           >
             <a
               href={socialLinks.linkedin}
@@ -105,7 +109,7 @@ export function Header({ locale }: HeaderProps) {
               rel="noopener noreferrer"
               aria-label="LinkedIn"
             >
-              <Linkedin className="h-4 w-4" />
+              <LinkedInIcon ref={linkedinIconRef} size={16} isAnimated={false} />
             </a>
           </Button>
 

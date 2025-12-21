@@ -14,7 +14,7 @@
       "contact": "Get In Touch"
     },
     "approach": {
-      "title": "Who I am",
+      "title": "Who I Am",
       "subtitle": "I build web products at the intersection of engineering, UX, and long-term thinking — focusing on clarity, performance, and systems that scale without losing their human touch.",
       "bullets": ["Clarity", "Performance", "UX"],
       "cta": "More about me",
@@ -151,11 +151,11 @@
     "title": "Let's Work Together",
     "subtitle": "Have a project in mind? Let's create something amazing together.",
     "name": "Name",
-    "namePlaceholder": "Your name",
+    "namePlaceholder": "",
     "email": "Email",
-    "emailPlaceholder": "your.email@example.com",
+    "emailPlaceholder": "",
     "phone": "Phone",
-    "phonePlaceholder": "+1 (555) 000-0000",
+    "phonePlaceholder": "",
     "optional": "optional",
     "message": "Message",
     "messagePlaceholder": "Tell me about your project...",

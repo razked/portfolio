@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -9,28 +11,42 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Sparkles, Zap, Palette } from "lucide-react";
+import { Sparkles, Zap, Palette } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { AvatarVideo } from "@/components/avatar-video";
+import {
+  ChevronsRightIcon,
+  type ChevronsRightIconHandle,
+} from "@/components/ChevronsRightIcon";
+import { useRef } from "react";
 
 const APPROACH_BULLET_CONFIGS = [
   {
     icon: Sparkles,
     color: "var(--primary)",
+    gradientFrom: "hsl(var(--primary))",
+    gradientTo: "hsl(var(--primary) / 0.6)",
   },
   {
     icon: Zap,
     color: "oklch(0.587 0.2158 281.66)",
+    gradientFrom: "oklch(0.587 0.2158 281.66)",
+    gradientTo: "oklch(0.587 0.2158 281.66 / 0.6)",
   },
   {
     icon: Palette,
     color: "oklch(0.7534 0.1349 67.6)",
+    gradientFrom: "oklch(0.7534 0.1349 67.6)",
+    gradientTo: "oklch(0.7534 0.1349 67.6 / 0.6)",
   },
 ] as const;
 
 export default function Home() {
   const t = useTranslations("home");
   const tContact = useTranslations("contact");
+  const ctaIconRef = useRef<ChevronsRightIconHandle>(null);
+  const approachIconRef = useRef<ChevronsRightIconHandle>(null);
+  const projectsIconRef = useRef<ChevronsRightIconHandle>(null);
 
   const featuredProjects = [
     {
@@ -77,10 +93,20 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button size="lg" asChild className="group">
-                <Link href="#who-am-i">
+              <Button
+                size="lg"
+                asChild
+                className="group"
+                onMouseEnter={() => ctaIconRef.current?.startAnimation()}
+                onMouseLeave={() => ctaIconRef.current?.stopAnimation()}
+              >
+                <Link href="#who-am-i" className="group">
                   {t("hero.cta")}
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ChevronsRightIcon
+                    ref={ctaIconRef}
+                    size={20}
+                    isAnimated={false}
+                  />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
@@ -119,14 +145,31 @@ export default function Home() {
                   const config = APPROACH_BULLET_CONFIGS[index];
                   const Icon = config.icon;
 
+                  const isPrimary = index === 0;
+                  const gradientStyle = isPrimary
+                    ? undefined
+                    : {
+                        background: `linear-gradient(90deg, ${config.gradientFrom}, ${config.gradientTo})`,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                      };
+                  const gradientClassName = isPrimary
+                    ? "bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent"
+                    : "";
+
                   return [
                     <div
                       key={`item-${index}`}
-                      className="flex items-center gap-2 text-sm font-medium tracking-wide"
-                      style={{ color: config.color }}
+                      className="flex items-center gap-2 text-sm font-bold tracking-wide"
                     >
-                      <Icon className="h-4 w-4 opacity-90" />
-                      <span>{bullet}</span>
+                      <Icon
+                        className="h-4 w-4 opacity-90"
+                        style={{ color: config.color }}
+                      />
+                      <span className={gradientClassName} style={gradientStyle}>
+                        {bullet}
+                      </span>
                     </div>,
 
                     index < bullets.length - 1 && (
@@ -142,10 +185,21 @@ export default function Home() {
           </div>
 
           <div className="mt-16 text-center">
-            <Button size="lg" variant="outline" asChild>
-              <Link href="/about">
+            <Button
+              size="lg"
+              variant="outline"
+              asChild
+              className="group"
+              onMouseEnter={() => approachIconRef.current?.startAnimation()}
+              onMouseLeave={() => approachIconRef.current?.stopAnimation()}
+            >
+              <Link href="/about" className="group">
                 {t("approach.cta")}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ChevronsRightIcon
+                  ref={approachIconRef}
+                  size={20}
+                  isAnimated={false}
+                />
               </Link>
             </Button>
           </div>
@@ -196,10 +250,21 @@ export default function Home() {
           </div>
 
           <div className="mt-16 text-center">
-            <Button size="lg" variant="outline" asChild>
-              <Link href="/projects">
+            <Button
+              size="lg"
+              variant="outline"
+              asChild
+              className="group"
+              onMouseEnter={() => projectsIconRef.current?.startAnimation()}
+              onMouseLeave={() => projectsIconRef.current?.stopAnimation()}
+            >
+              <Link href="/projects" className="group">
                 {t("projects.viewAll")}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ChevronsRightIcon
+                  ref={projectsIconRef}
+                  size={20}
+                  isAnimated={false}
+                />
               </Link>
             </Button>
           </div>
@@ -218,8 +283,24 @@ export default function Home() {
                 {tContact("subtitle")}
               </p>
             </div>
-            <Card>
-              <CardContent className="pt-6">
+            <Card className="relative overflow-hidden bg-card/95 backdrop-blur-sm">
+              {/* Wave Background */}
+              <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                <svg
+                  className="absolute top-0 right-0 h-full w-[100%]"
+                  preserveAspectRatio="none"
+                  viewBox="0 0 600 600"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M800,0 L800,280 Q600,180 400,280 Q200,380 0,280 L0,800 L800,800 L800,0 Z"
+                    fill="oklch(0.3556 0.0431 283.99)"
+                    className="opacity-60 dark:opacity-30"
+                  />
+                </svg>
+              </div>
+              <CardContent className="relative z-10 pt-6">
                 <ContactForm />
               </CardContent>
             </Card>
