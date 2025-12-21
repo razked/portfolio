@@ -3,14 +3,7 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { ContactForm } from "@/components/contact-form";
 import { AvatarVideo } from "@/components/avatar-video";
 import {
@@ -18,6 +11,7 @@ import {
   type ChevronsRightIconHandle,
 } from "@/components/ChevronsRightIcon";
 import { WhoIAmSection } from "@/components/who-i-am-section";
+import { WhatIDoGrid } from "@/components/what-i-do";
 import { useRef } from "react";
 import { motion } from "motion/react";
 
@@ -25,31 +19,6 @@ export default function Home() {
   const t = useTranslations("home");
   const tContact = useTranslations("contact");
   const ctaIconRef = useRef<ChevronsRightIconHandle>(null);
-  const projectsIconRef = useRef<ChevronsRightIconHandle>(null);
-
-  const featuredProjects = [
-    {
-      title: "E-Commerce Platform",
-      description:
-        "A scalable multi-vendor marketplace with real-time inventory management",
-      tags: ["Next.js", "PostgreSQL", "Redis", "Stripe"],
-      image: "🛍️",
-    },
-    {
-      title: "Analytics Dashboard",
-      description:
-        "Real-time data visualization platform processing millions of events",
-      tags: ["React", "D3.js", "Node.js", "MongoDB"],
-      image: "📊",
-    },
-    {
-      title: "AI Content Generator",
-      description:
-        "Intelligent content creation tool powered by machine learning",
-      tags: ["Python", "OpenAI", "FastAPI", "Redis"],
-      image: "🤖",
-    },
-  ];
 
   return (
     <div className="flex flex-col">
@@ -118,70 +87,7 @@ export default function Home() {
 
       <WhoIAmSection />
 
-      {/* Experience Section */}
-      <section
-        id="experience"
-        className="relative py-24 sm:py-32 bg-background section-border-bottom"
-      >
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-              {t("projects.title")}
-            </h2>
-            <p className="mb-12 text-lg text-muted-foreground">
-              {t("projects.subtitle")}
-            </p>
-          </div>
-
-          <div className="mx-auto grid max-w-6xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredProjects.map((project, index) => (
-              <Card
-                key={index}
-                className="group overflow-hidden transition-all hover:shadow-xl hover:-translate-y-2"
-              >
-                <CardHeader>
-                  <div className="mb-4 text-6xl">{project.image}</div>
-                  <CardTitle className="text-2xl group-hover:text-primary transition-colors">
-                    {project.title}
-                  </CardTitle>
-                  <CardDescription className="text-base">
-                    {project.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="mt-16 text-center">
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              className="group"
-              onMouseEnter={() => projectsIconRef.current?.startAnimation()}
-              onMouseLeave={() => projectsIconRef.current?.stopAnimation()}
-            >
-              <Link href="/experience" className="group">
-                {t("projects.viewAll")}
-                <ChevronsRightIcon
-                  ref={projectsIconRef}
-                  size={20}
-                  isAnimated={false}
-                />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <WhatIDoGrid />
 
       {/* Contact Form Section */}
       <section id="contact" className="relative bg-background py-24">

@@ -83,6 +83,24 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  /* Icon colors for carousel and sections */
+  --primary-bg: oklch(0.6856 0.1638 261.29 / 0.1);
+  --purple: oklch(0.587 0.2158 281.66);
+  --purple-bg: oklch(0.587 0.2158 281.66 / 0.1);
+  --icon-database: oklch(0.65 0.15 220);
+  --icon-database-bg: oklch(0.65 0.15 220 / 0.1);
+  --icon-auth: oklch(0.75 0.15 80);
+  --icon-auth-bg: oklch(0.75 0.15 80 / 0.1);
+  --icon-devops: oklch(0.65 0.15 280);
+  --icon-devops-bg: oklch(0.65 0.15 280 / 0.1);
+  --orange: var(--icon-devops-alt);
+  --orange-bg: var(--icon-devops-alt-bg);
+  --icon-payments: oklch(0.65 0.15 150);
+  --icon-payments-bg: oklch(0.65 0.15 150 / 0.1);
+  --red: oklch(0.7398 0.1621 6.01);
+  --red-bg: oklch(0.7398 0.1621 6.01 / 0.1);
+  --icon-devops-alt: oklch(0.7534 0.1349 67.6);
+  --icon-devops-alt-bg: oklch(0.7534 0.1349 67.6 / 0.1);
 }
 
 .dark {
@@ -119,6 +137,24 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  /* Icon colors for carousel and sections - dark mode */
+  --primary-bg: oklch(0.6856 0.1638 261.29 / 0.15);
+  --purple: oklch(0.587 0.2158 281.66);
+  --purple-bg: oklch(0.587 0.2158 281.66 / 0.15);
+  --icon-database: oklch(0.65 0.15 220);
+  --icon-database-bg: oklch(0.65 0.15 220 / 0.15);
+  --icon-auth: oklch(0.75 0.15 80);
+  --icon-auth-bg: oklch(0.75 0.15 80 / 0.15);
+  --icon-devops: oklch(0.65 0.15 280);
+  --icon-devops-bg: oklch(0.65 0.15 280 / 0.15);
+  --orange: var(--icon-devops-alt);
+  --orange-bg: var(--icon-devops-alt-bg);
+  --icon-payments: oklch(0.65 0.15 150);
+  --icon-payments-bg: oklch(0.65 0.15 150 / 0.15);
+  --red: oklch(0.7398 0.1621 6.01);
+  --red-bg: oklch(0.7398 0.1621 6.01 / 0.15);
+  --icon-devops-alt: oklch(0.7534 0.1349 67.6);
+  --icon-devops-alt-bg: oklch(0.7534 0.1349 67.6 / 0.15);
 }
 
 @layer base {

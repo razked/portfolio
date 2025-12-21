@@ -44,8 +44,34 @@
     },
     "projects": {
       "title": "What I Do",
-      "subtitle": "A selection of my recent work that showcases my expertise",
-      "viewAll": "My Experience"
+      "subtitle": "I work across the full web stack, focusing on reliable, scalable systems that are easy to evolve.",
+      "viewAll": "My Full Experience",
+      "items": [
+        {
+          "title": "Frontend",
+          "icon": "Monitor"
+        },
+        {
+          "title": "APIs & Backend",
+          "icon": "Server"
+        },
+        {
+          "title": "Databases",
+          "icon": "Database"
+        },
+        {
+          "title": "Auth & Permissions",
+          "icon": "Shield"
+        },
+        {
+          "title": "Cloud & DevOps",
+          "icon": "Cloud"
+        },
+        {
+          "title": "Payments & Integrations",
+          "icon": "ArrowLeftRight"
+        }
+      ]
     }
   },
   "about": {
@@ -95,15 +121,11 @@
           "Authorization"
         ]
       }
-    },
-    "experience": {
-      "title": "Experience Highlights",
-      "years": "10+ Years in Software Development"
     }
   },
   "experience": {
-    "title": "Experience Highlights",
-    "years": "10+ Years in Software Development",
+    "title": "My Experience",
+    "years": "10+ Years in Web Development",
     "items": [
       {
         "period": "2020 - Present",
@@ -154,7 +176,7 @@
   },
   "contact": {
     "title": "Let's Work Together",
-    "subtitle": "Have a project in mind? Let's create something amazing together.",
+    "subtitle": "Happy to talk about building great products.",
     "name": "Name",
     "namePlaceholder": "",
     "email": "Email",

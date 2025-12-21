@@ -25,26 +25,26 @@ export default function AboutPage() {
 
   const categoryColors = {
     frontend: {
-      color: "hsl(var(--primary))",
-      bg: "hsl(var(--primary) / 0.1)",
+      color: "var(--primary)",
+      bg: "var(--primary-bg)",
       gradient:
         "bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent",
     },
     backend: {
-      color: "oklch(0.587 0.2158 281.66)",
-      bg: "oklch(0.587 0.2158 281.66 / 0.1)",
+      color: "var(--purple)",
+      bg: "var(--purple-bg)",
       gradientFrom: "oklch(0.587 0.2158 281.66)",
       gradientTo: "oklch(0.587 0.2158 281.66 / 0.6)",
     },
     devops: {
-      color: "oklch(0.7534 0.1349 67.6)",
-      bg: "oklch(0.7534 0.1349 67.6 / 0.1)",
+      color: "var(--orange)",
+      bg: "var(--orange-bg)",
       gradientFrom: "oklch(0.7534 0.1349 67.6)",
       gradientTo: "oklch(0.7534 0.1349 67.6 / 0.6)",
     },
     tools: {
-      color: "oklch(0.7398 0.1621 6.01)",
-      bg: "oklch(0.7398 0.1621 6.01 / 0.1)",
+      color: "var(--red)",
+      bg: "var(--red-bg)",
       gradientFrom: "oklch(0.7398 0.1621 6.01)",
       gradientTo: "oklch(0.7398 0.1621 6.01 / 0.6)",
     },

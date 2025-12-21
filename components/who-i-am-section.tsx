@@ -21,10 +21,10 @@ const APPROACH_BULLET_CONFIGS = [
   },
   {
     icon: Zap,
-    color: "oklch(0.796 0.1282 127.7)",
+    color: "oklch(0.78 0.145 165.77)",
     bg: "oklch(0.796 0.1282 127.7 / 0.1)",
-    gradientFrom: "oklch(0.796 0.1282 127.7)",
-    gradientTo: "oklch(0.796 0.1282 127.7 / 0.6)",
+    gradientFrom: "oklch(0.78 0.145 165.77)",
+    gradientTo: "oklch(0.78 0.145 165.77 / 0.6)",
   },
   {
     icon: Palette,
