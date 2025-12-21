@@ -11,42 +11,20 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Zap, Palette } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { AvatarVideo } from "@/components/avatar-video";
 import {
   ChevronsRightIcon,
   type ChevronsRightIconHandle,
 } from "@/components/ChevronsRightIcon";
+import { WhoIAmSection } from "@/components/who-i-am-section";
 import { useRef } from "react";
 import { motion } from "motion/react";
-
-const APPROACH_BULLET_CONFIGS = [
-  {
-    icon: Sparkles,
-    color: "var(--primary)",
-    gradientFrom: "hsl(var(--primary))",
-    gradientTo: "hsl(var(--primary) / 0.6)",
-  },
-  {
-    icon: Zap,
-    color: "oklch(0.587 0.2158 281.66)",
-    gradientFrom: "oklch(0.587 0.2158 281.66)",
-    gradientTo: "oklch(0.587 0.2158 281.66 / 0.6)",
-  },
-  {
-    icon: Palette,
-    color: "oklch(0.7534 0.1349 67.6)",
-    gradientFrom: "oklch(0.7534 0.1349 67.6)",
-    gradientTo: "oklch(0.7534 0.1349 67.6 / 0.6)",
-  },
-] as const;
 
 export default function Home() {
   const t = useTranslations("home");
   const tContact = useTranslations("contact");
   const ctaIconRef = useRef<ChevronsRightIconHandle>(null);
-  const approachIconRef = useRef<ChevronsRightIconHandle>(null);
   const projectsIconRef = useRef<ChevronsRightIconHandle>(null);
 
   const featuredProjects = [
@@ -138,87 +116,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHO AM I SECTION */}
-      <section
-        id="who-am-i"
-        className="relative py-24 sm:py-32 bg-background section-border-bottom"
-      >
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-12">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-              {t("approach.title")}
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              {t("approach.subtitle")}
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-              {(() => {
-                const bullets = t.raw("approach.bullets");
-
-                return bullets.flatMap((bullet: string, index: number) => {
-                  const config = APPROACH_BULLET_CONFIGS[index];
-                  const Icon = config.icon;
-
-                  const isPrimary = index === 0;
-                  const gradientStyle = isPrimary
-                    ? undefined
-                    : {
-                        background: `linear-gradient(90deg, ${config.gradientFrom}, ${config.gradientTo})`,
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        backgroundClip: "text",
-                      };
-                  const gradientClassName = isPrimary
-                    ? "bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent"
-                    : "";
-
-                  return [
-                    <div
-                      key={`item-${index}`}
-                      className="flex items-center gap-2 text-sm font-bold tracking-wide"
-                    >
-                      <Icon
-                        className="h-4 w-4 opacity-90"
-                        style={{ color: config.color }}
-                      />
-                      <span className={gradientClassName} style={gradientStyle}>
-                        {bullet}
-                      </span>
-                    </div>,
-
-                    index < bullets.length - 1 && (
-                      <span
-                        key={`separator-${index}`}
-                        className="h-1 w-1 rounded-full bg-muted-foreground/40"
-                      />
-                    ),
-                  ].filter(Boolean);
-                });
-              })()}
-            </div>
-          </div>
-
-          <div className="mt-16 text-center">
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              className="group"
-              onMouseEnter={() => approachIconRef.current?.startAnimation()}
-              onMouseLeave={() => approachIconRef.current?.stopAnimation()}
-            >
-              <Link href="/about" className="group">
-                {t("approach.cta")}
-                <ChevronsRightIcon
-                  ref={approachIconRef}
-                  size={20}
-                  isAnimated={false}
-                />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <WhoIAmSection />
 
       {/* Experience Section */}
       <section

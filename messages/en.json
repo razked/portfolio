@@ -14,8 +14,14 @@
     },
     "approach": {
       "title": "Who I Am",
-      "subtitle": "I build web products at the intersection of engineering, UX, and long-term thinking. Focusing on clarity, performance, and systems that scale without losing their human touch.",
+      "subtitle1": "I build web products at the intersection of engineering, UX, and long-term thinking.",
+      "subtitle2": "Focusing on clarity, performance, and systems that scale without losing their human touch.",
       "bullets": ["Clarity", "Performance", "UX"],
+      "descriptions": [
+        "Clear communication and intuitive design that makes complex systems easy to understand.",
+        "Optimized performance and scalability that handles growth without compromise.",
+        "Thoughtful user experiences that balance functionality with elegance."
+      ],
       "cta": "More about me",
       "principles": [
         {
@@ -37,7 +43,7 @@
       ]
     },
     "projects": {
-      "title": "What I've Built",
+      "title": "What I Do",
       "subtitle": "A selection of my recent work that showcases my expertise",
       "viewAll": "My Experience"
     }
