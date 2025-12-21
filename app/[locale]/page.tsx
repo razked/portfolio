@@ -19,6 +19,7 @@ import {
   type ChevronsRightIconHandle,
 } from "@/components/ChevronsRightIcon";
 import { useRef } from "react";
+import { motion } from "motion/react";
 
 const APPROACH_BULLET_CONFIGS = [
   {
@@ -78,21 +79,41 @@ export default function Home() {
       <section className="relative overflow-hidden section-border-bottom h-[100dvh] flex items-center -mt-16 pt-16 hero-grid">
         <div className="container mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 w-full relative z-10">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="mb-8 flex justify-center">
+            <motion.div
+              className="mb-8 flex justify-center"
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
               <AvatarVideo className="h-32 w-32 rounded-full object-cover sm:h-50 sm:w-50 lg:h-48 lg:w-48 avatar-shadow" />
-            </div>
-            <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+            </motion.div>
+            <motion.h1
+              className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            >
               <span className="block">{t("hero.name")}</span>
               <span className="block bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
                 {t("hero.title")}
               </span>
-            </h1>
+            </motion.h1>
 
-            <p className="mb-10 text-lg text-muted-foreground sm:text-xl">
+            <motion.p
+              className="mb-10 text-lg text-muted-foreground sm:text-xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+            >
               {t("hero.description")}
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <motion.div
+              className="flex flex-col gap-4 sm:flex-row sm:justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+            >
               <Button
                 size="lg"
                 asChild
@@ -112,7 +133,7 @@ export default function Home() {
               <Button size="lg" variant="outline" asChild>
                 <Link href="#contact">{t("hero.contact")}</Link>
               </Button>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
