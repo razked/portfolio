@@ -79,7 +79,7 @@ export default function Home() {
         <div className="container mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 w-full">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-8 flex justify-center">
-              <AvatarVideo className="h-32 w-32 rounded-full object-cover sm:h-50 sm:w-50 lg:h-48 lg:w-48" />
+              <AvatarVideo className="h-32 w-32 rounded-full object-cover sm:h-50 sm:w-50 lg:h-48 lg:w-48 avatar-shadow" />
             </div>
             <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
               <span className="block">{t("hero.name")}</span>
@@ -115,13 +115,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* Decorative Elements */}
-        {/* <div className="absolute inset-0 -z-10 overflow-hidden bg-background">
-          <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
-            <div className="h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl" />
-          </div>
-        </div> */}
       </section>
 
       {/* WHO AM I SECTION */}
@@ -206,9 +199,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects Section */}
+      {/* Experience Section */}
       <section
-        id="projects"
+        id="experience"
         className="relative py-24 sm:py-32 bg-background section-border-bottom"
       >
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -258,7 +251,7 @@ export default function Home() {
               onMouseEnter={() => projectsIconRef.current?.startAnimation()}
               onMouseLeave={() => projectsIconRef.current?.stopAnimation()}
             >
-              <Link href="/projects" className="group">
+              <Link href="/experience" className="group">
                 {t("projects.viewAll")}
                 <ChevronsRightIcon
                   ref={projectsIconRef}

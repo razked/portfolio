@@ -210,6 +210,29 @@
       0 15px 20px -8px oklch(0.15 0.0263 284.38 / 0.2);
   }
   
+  /* Avatar shadow - visible soft glow on all sides except top */
+  .avatar-shadow {
+    box-shadow: 
+      /* Bottom shadow */
+      0 30px 60px -15px oklch(0.4316 0.0575 283.73 / 0.2),
+      0 15px 30px -10px oklch(0.4316 0.0575 283.73 / 0.15),
+      /* Left shadow */
+      -20px 10px 40px -15px oklch(0.4316 0.0575 283.73 / 0.15),
+      /* Right shadow */
+      20px 10px 40px -15px oklch(0.4316 0.0575 283.73 / 0.15);
+  }
+  
+  .dark .avatar-shadow {
+    box-shadow: 
+      /* Bottom shadow */
+      0 30px 60px -15px oklch(0.4316 0.0575 283.73 / 0.35),
+      0 15px 30px -10px oklch(0.4316 0.0575 283.73 / 0.3),
+      /* Left shadow */
+      -20px 10px 40px -15px oklch(0.4316 0.0575 283.73 / 0.3),
+      /* Right shadow */
+      20px 10px 40px -15px oklch(0.4316 0.0575 283.73 / 0.3);
+  }
+  
   /* Wave gradient for dark mode */
   .dark .wave-path {
     fill: url(#waveGradientDark);

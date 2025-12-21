@@ -5,11 +5,10 @@
     "experience": "Experience"
   },
   "home": {
-    "title": "Hello world!",
     "hero": {
-      "name": "More than code.",
+      "name": "Web Engineer",
       "title": "",
-      "description": "I build complete web products, from idea to production.",
+      "description": "10+ years building production web applications",
       "cta": "About me",
       "contact": "Get In Touch"
     },
@@ -38,9 +37,9 @@
       ]
     },
     "projects": {
-      "title": "Featured Projects",
+      "title": "What I've Built",
       "subtitle": "A selection of my recent work that showcases my expertise",
-      "viewAll": "View All Projects"
+      "viewAll": "My Experience"
     }
   },
   "about": {
