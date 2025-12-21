@@ -75,8 +75,8 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative overflow-hidden section-border-bottom h-[100dvh] flex items-center -mt-16 pt-16">
-        <div className="container mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 w-full">
+      <section className="relative overflow-hidden section-border-bottom h-[100dvh] flex items-center -mt-16 pt-16 hero-grid">
+        <div className="container mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 w-full relative z-10">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-8 flex justify-center">
               <AvatarVideo className="h-32 w-32 rounded-full object-cover sm:h-50 sm:w-50 lg:h-48 lg:w-48 avatar-shadow" />

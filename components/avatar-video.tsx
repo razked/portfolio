@@ -7,7 +7,10 @@ interface AvatarVideoProps {
   poster?: string;
 }
 
-export function AvatarVideo({ className = "", poster }: AvatarVideoProps) {
+export function AvatarVideo({
+  className = "",
+  poster = "/about.png",
+}: AvatarVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -25,10 +28,9 @@ export function AvatarVideo({ className = "", poster }: AvatarVideoProps) {
       muted
       autoPlay
       playsInline
-      // loop
       preload="auto"
       controls={false}
-      poster="/avatar.jpg"
+      poster={poster}
       className={className}
     >
       <source src="/avatar-ios.mp4" type="video/mp4" />
