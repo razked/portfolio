@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useTranslations } from "next-intl";
 import { SendIcon, type SendIconHandle } from "@/components/SendIcon";
+import { CheckCircle2, XCircle } from "lucide-react";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -31,15 +32,26 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
     "idle" | "success" | "error"
   >("idle");
   const sendIconRef = useRef<SendIconHandle>(null);
+  const statusMessageRef = useRef<HTMLDivElement>(null);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    trigger,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
   });
+
+  useEffect(() => {
+    if (submitStatus !== "idle") {
+      document.getElementById("contact-status-anchor")?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  }, [submitStatus]);
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
@@ -90,43 +102,48 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
         )}
       </div>
 
-      {/* Email Field */}
-      <div className="space-y-2">
-        <Label htmlFor="email">{t("email")}</Label>
-        <Input
-          id="email"
-          type="email"
-          inputMode="email"
-          placeholder={t("emailPlaceholder")}
-          autoComplete="email"
-          {...register("email")}
-          className={errors.email ? "border-destructive" : ""}
-        />
-        {errors.email && (
-          <p className="text-sm text-destructive">{errors.email.message}</p>
-        )}
-      </div>
+      {/* Email and Phone Fields - Same row on desktop */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Email Field */}
+        <div className="space-y-2">
+          <Label htmlFor="email">{t("email")}</Label>
+          <Input
+            id="email"
+            type="email"
+            inputMode="email"
+            placeholder={t("emailPlaceholder")}
+            autoComplete="email"
+            {...register("email", {
+              onBlur: () => trigger("email"),
+            })}
+            className={errors.email ? "border-destructive" : ""}
+          />
+          {errors.email && (
+            <p className="text-sm text-destructive">{errors.email.message}</p>
+          )}
+        </div>
 
-      {/* Phone Field (Optional) */}
-      <div className="space-y-2">
-        <Label htmlFor="phone">
-          {t("phone")}{" "}
-          <span className="text-muted-foreground text-xs">
-            ({t("optional")})
-          </span>
-        </Label>
-        <Input
-          id="phone"
-          type="tel"
-          inputMode="tel"
-          placeholder={t("phonePlaceholder")}
-          autoComplete="tel"
-          {...register("phone")}
-          className={errors.phone ? "border-destructive" : ""}
-        />
-        {errors.phone && (
-          <p className="text-sm text-destructive">{errors.phone.message}</p>
-        )}
+        {/* Phone Field (Optional) */}
+        <div className="space-y-2">
+          <Label htmlFor="phone">
+            {t("phone")}{" "}
+            <span className="text-muted-foreground text-xs">
+              ({t("optional")})
+            </span>
+          </Label>
+          <Input
+            id="phone"
+            type="tel"
+            inputMode="tel"
+            placeholder={t("phonePlaceholder")}
+            autoComplete="tel"
+            {...register("phone")}
+            className={errors.phone ? "border-destructive" : ""}
+          />
+          {errors.phone && (
+            <p className="text-sm text-destructive">{errors.phone.message}</p>
+          )}
+        </div>
       </div>
 
       {/* Message Field */}
@@ -169,15 +186,24 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
 
       {/* Status Messages */}
       {submitStatus === "success" && (
-        <div className="rounded-lg bg-green-50 dark:bg-green-900/20 p-4 text-sm text-green-800 dark:text-green-200">
-          {t("success")}
+        <div
+          ref={statusMessageRef}
+          className="rounded-lg bg-green-50 dark:bg-green-900/20 p-4 text-sm text-green-800 dark:text-green-200 flex items-center gap-2"
+        >
+          <CheckCircle2 className="h-5 w-5 text-green-800 dark:text-green-200 flex-shrink-0" />
+          <span>{t("success")}</span>
         </div>
       )}
       {submitStatus === "error" && (
-        <div className="rounded-lg bg-red-50 dark:bg-red-400/8 p-4 text-sm text-red-800 dark:text-destructive">
-          {t("error")}
+        <div
+          ref={statusMessageRef}
+          className="rounded-lg bg-red-50 dark:bg-red-400/8 p-4 text-sm text-red-800 dark:text-destructive flex items-center gap-2"
+        >
+          <XCircle className="h-5 w-5 text-red-800 dark:text-destructive flex-shrink-0" />
+          <span>{t("error")}</span>
         </div>
       )}
+      <span id="contact-status-anchor" className="block scroll-mt-6" />
     </form>
   );
 }
