@@ -9,7 +9,14 @@ export const siteConfig = {
   title: "Raz Kedem | Senior Full Stack Developer",
   description:
     "Senior Full Stack Developer with 10+ years of experience building production web applications. Specializing in React, Next.js, TypeScript, and scalable backend systems.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://razkedem.dev", // Update with your actual domain
+  url: (() => {
+    const url = process.env.NEXT_PUBLIC_SITE_URL || "https://razkedem.dev";
+    // Ensure URL has protocol
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url;
+    }
+    return `https://${url}`;
+  })(), // Update with your actual domain
   ogImage: "/about.png", // Open Graph image
   links: {
     github: socialLinks.github,
@@ -35,4 +42,3 @@ export const siteConfig = {
   locales: ["en"],
   defaultLocale: "en",
 } as const;
-

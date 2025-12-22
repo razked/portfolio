@@ -2,8 +2,16 @@ import { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
 import { routing } from "@/i18n/routing";
 
+// Ensure URL has protocol
+function normalizeUrl(url: string): string {
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    return url;
+  }
+  return `https://${url}`;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = siteConfig.url;
+  const baseUrl = normalizeUrl(siteConfig.url);
   const routes = ["", "/about", "/experience"];
 
   const sitemapEntries: MetadataRoute.Sitemap = [];
@@ -11,7 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Generate sitemap entries for each locale and route
   routing.locales.forEach((locale) => {
     routes.forEach((route) => {
-      const path = locale === siteConfig.defaultLocale ? route : `/${locale}${route}`;
+      const path =
+        locale === siteConfig.defaultLocale ? route : `/${locale}${route}`;
       const url = `${baseUrl}${path}`;
 
       sitemapEntries.push({
@@ -22,8 +31,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: {
           languages: Object.fromEntries(
             routing.locales.map((loc) => {
-              const locPath = loc === siteConfig.defaultLocale ? route : `/${loc}${route}`;
-              return [loc, `${baseUrl}${locPath}`];
+              const locPath =
+                loc === siteConfig.defaultLocale ? route : `/${loc}${route}`;
+              return [loc, normalizeUrl(`${baseUrl}${locPath}`)];
             })
           ),
         },
@@ -33,5 +43,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return sitemapEntries;
 }
-
-
