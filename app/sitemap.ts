@@ -17,10 +17,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
   // Generate sitemap entries for each locale and route
+  // Note: next-intl always uses locale prefix in URLs (app/[locale]/ structure)
   routing.locales.forEach((locale) => {
     routes.forEach((route) => {
-      const path =
-        locale === siteConfig.defaultLocale ? route : `/${locale}${route}`;
+      const path = `/${locale}${route}`;
       const url = `${baseUrl}${path}`;
 
       sitemapEntries.push({
@@ -31,8 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: {
           languages: Object.fromEntries(
             routing.locales.map((loc) => {
-              const locPath =
-                loc === siteConfig.defaultLocale ? route : `/${loc}${route}`;
+              const locPath = `/${loc}${route}`;
               return [loc, normalizeUrl(`${baseUrl}${locPath}`)];
             })
           ),
