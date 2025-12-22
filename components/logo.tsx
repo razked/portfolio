@@ -17,7 +17,7 @@ export function Logo({
     lg: "text-2xl",
   };
 
-  const logoText = locale === "he" ? "רז קדם" : "Raz Kedem";
+  const logoText = "Raz Kedem";
 
   return (
     <Link

@@ -16,7 +16,8 @@ export function generatePageMetadata({
   keywords?: string[];
 }): Metadata {
   const baseUrl = siteConfig.url;
-  const currentPath = locale === siteConfig.defaultLocale ? path : `/${locale}${path}`;
+  const currentPath =
+    locale === siteConfig.defaultLocale ? path : `/${locale}${path}`;
   const canonicalUrl = `${baseUrl}${currentPath}`;
 
   // Generate alternate language URLs
@@ -29,14 +30,14 @@ export function generatePageMetadata({
   return {
     title,
     description,
-    keywords: keywords || siteConfig.keywords,
+    keywords: keywords || [...siteConfig.keywords],
     alternates: {
       canonical: canonicalUrl,
       languages: alternates,
     },
     openGraph: {
       type: "website",
-      locale: locale === "he" ? "he_IL" : siteConfig.locale,
+      locale: siteConfig.locale,
       url: canonicalUrl,
       title,
       description,
@@ -58,4 +59,3 @@ export function generatePageMetadata({
     },
   };
 }
-

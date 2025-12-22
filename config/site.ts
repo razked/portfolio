@@ -35,3 +35,4 @@ export const siteConfig = {
   locales: ["en"],
   defaultLocale: "en",
 } as const;
+
