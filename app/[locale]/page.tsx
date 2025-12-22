@@ -15,6 +15,8 @@ import { WhatIDoGrid } from "@/components/what-i-do";
 import { useRef } from "react";
 import { motion } from "motion/react";
 
+// Note: Metadata for client components should be handled in the layout
+// This page's metadata is defined in app/[locale]/layout.tsx
 export default function Home() {
   const t = useTranslations("home");
   const tContact = useTranslations("contact");

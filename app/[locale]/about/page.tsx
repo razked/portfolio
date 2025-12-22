@@ -1,8 +1,40 @@
+import { Metadata } from "next";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { Monitor, Server, Cloud, Wrench } from "lucide-react";
+import { generatePageMetadata } from "@/lib/metadata";
+import { siteConfig } from "@/config/site";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "about" });
+
+  return generatePageMetadata({
+    locale,
+    title: t("title"),
+    description: t("description"),
+    path: "/about",
+    keywords: [
+      "Full Stack Developer",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Frontend Developer",
+      "Backend Developer",
+      "Web Development",
+      "Software Engineer",
+      "Technical Skills",
+      "Raz Kedem",
+    ],
+  });
+}
 
 export default function AboutPage() {
   const t = useTranslations("about");
@@ -60,10 +92,13 @@ export default function AboutPage() {
               <div className="relative rounded-full bg-white/90 backdrop-blur-sm p-2 shadow-lg shadow-white/20 sm:p-3 lg:p-4">
                 <Image
                   src="/about.png"
-                  alt="Avatar"
+                  alt={`${t("title")} - ${siteConfig.author.name}, ${
+                    siteConfig.author.jobTitle
+                  }`}
                   width={192}
                   height={192}
                   className="h-32 w-32 rounded-full object-cover sm:h-40 sm:w-40 lg:h-48 lg:w-48"
+                  priority
                 />
               </div>
             </div>

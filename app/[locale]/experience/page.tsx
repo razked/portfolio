@@ -1,7 +1,10 @@
+import { Metadata } from "next";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { generatePageMetadata } from "@/lib/metadata";
 
 type ExperienceItem = {
   period: string;
@@ -9,6 +12,31 @@ type ExperienceItem = {
   company: string;
   achievements: string[];
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "experience" });
+
+  return generatePageMetadata({
+    locale,
+    title: t("title"),
+    description: `${t("years")} - ${t("title")}`,
+    path: "/experience",
+    keywords: [
+      "Work Experience",
+      "Software Engineer",
+      "Full Stack Developer",
+      "Career",
+      "Professional Experience",
+      "Web Development",
+      "Raz Kedem",
+    ],
+  });
+}
 
 export default function ExperiencePage() {
   const t = useTranslations("experience");
